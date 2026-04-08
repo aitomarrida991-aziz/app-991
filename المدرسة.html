@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>منصة عزيز للتعليم عن بعد — المدرسة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ===================== VARIABLES ===================== */
+:root {
+  --gold:       #c9a84c;
+  --gold-light: #f0d080;
+  --gold-dark:  #9a7a2a;
+  --emerald:    #1a5c3a;
+  --emerald-2:  #22744a;
+  --emerald-3:  #2d9060;
+  --cream:      #fdf8ee;
+  --cream2:     #f5eedb;
+  --ink:        #1a1208;
+  --ink2:       #3d2e0a;
+  --muted:      #7a6a40;
+  --kids-bg:    #fff8e6;
+  --kids-accent:#e8a020;
+  --adults-bg:  #eef4f0;
+  --adults-accent:#1a5c3a;
+  --radius:     18px;
+  --shadow:     0 8px 40px rgba(26,18,8,0.13);
+  --shadow-lg:  0 16px 60px rgba(26,18,8,0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* ===================== GEOMETRIC PATTERN BG ===================== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(26,92,58,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===================== HEADER ===================== */
+header {
+  background: linear-gradient(135deg, var(--emerald) 0%, #0f3d26 60%, #0a2a1a 100%);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.35);
+}
+
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.logo-emblem {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.logo-emblem::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+
+.logo-words { line-height: 1.1; }
+.logo-words .main {
+  font-family: 'Amiri', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-light);
+  display: block;
+}
+.logo-words .sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: none;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.nav-btn:hover { background: rgba(255,255,255,0.1); color: var(--gold-light); }
+.nav-btn.active { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.4); color: var(--gold-light); }
+
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.btn-login {
+  padding: 9px 22px;
+  background: transparent;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  color: var(--gold-light);
+  border-radius: 9px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  text-decoration: none;
+}
+.btn-login:hover { background: rgba(201,168,76,0.15); border-color: var(--gold-light); }
+
+.btn-enroll {
+  padding: 9px 22px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: var(--emerald);
+  border: none;
+  border-radius: 9px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 3px 12px rgba(201,168,76,0.4);
+  text-decoration: none;
+}
+.btn-enroll:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.55); }
+
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  background: linear-gradient(160deg, #0a2a1a 0%, var(--emerald) 40%, #1a7048 100%);
+  overflow: hidden;
+  padding: 70px 0 80px;
+  text-align: center;
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.04) 40px, rgba(201,168,76,0.04) 41px),
+    repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(201,168,76,0.04) 40px, rgba(201,168,76,0.04) 41px);
+  pointer-events: none;
+}
+
+.hero-ornament {
+  position: absolute;
+  font-size: 200px;
+  opacity: 0.04;
+  pointer-events: none;
+  color: var(--gold);
+  font-family: 'Amiri', serif;
+}
+.hero-ornament.left { left: -40px; top: -30px; }
+.hero-ornament.right { right: -40px; bottom: -30px; }
+
+.hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 100px;
+  padding: 6px 18px;
+  font-size: 13px;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  animation: fadeDown 0.6s ease both;
+}
+
+.hero-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  animation: fadeDown 0.6s ease 0.1s both;
+}
+
+.hero-title span { color: var(--gold-light); }
+
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  animation: fadeDown 0.6s ease 0.2s both;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeDown 0.6s ease 0.3s both;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  min-width: 120px;
+}
+.stat-box .num {
+  font-family: 'Cairo', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold-light);
+}
+.stat-box .lbl { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+/* ===================== SECTION HEADER ===================== */
+.section-header {
+  text-align: center;
+  padding: 60px 24px 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.section-eyebrow::before, .section-eyebrow::after {
+  content: '';
+  width: 30px;
+  height: 1.5px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.section-title span { color: var(--emerald); }
+
+.section-desc { font-size: 16px; color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.8; }
+
+/* ===================== WING TABS ===================== */
+.wing-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px 40px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.wing-tab {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 36px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.34,1.56,.64,1);
+  border: 2px solid var(--cream2);
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  min-width: 220px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.wing-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.wing-tab.kids-tab::before { background: linear-gradient(135deg, rgba(232,160,32,0.08), rgba(255,200,50,0.05)); }
+.wing-tab.adults-tab::before { background: linear-gradient(135deg, rgba(26,92,58,0.08), rgba(45,144,96,0.05)); }
+
+.wing-tab:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.wing-tab:hover::before { opacity: 1; }
+
+.wing-tab.active.kids-tab {
+  border-color: var(--kids-accent);
+  background: var(--kids-bg);
+  box-shadow: 0 8px 32px rgba(232,160,32,0.25);
+  transform: translateY(-4px);
+}
+.wing-tab.active.adults-tab {
+  border-color: var(--adults-accent);
+  background: var(--adults-bg);
+  box-shadow: 0 8px 32px rgba(26,92,58,0.2);
+  transform: translateY(-4px);
+}
+
+.wing-tab.active::before { opacity: 1; }
+
+.wing-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+  transition: transform .3s;
+}
+.wing-tab:hover .wing-icon { transform: scale(1.1) rotate(-3deg); }
+.kids-tab .wing-icon { background: linear-gradient(135deg, #f9d878, #f5a623); box-shadow: 0 4px 14px rgba(245,166,35,0.35); }
+.adults-tab .wing-icon { background: linear-gradient(135deg, #3d9e68, #1a5c3a); box-shadow: 0 4px 14px rgba(26,92,58,0.35); }
+
+.wing-label { flex: 1; }
+.wing-label .title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.wing-label .count {
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.wing-tab.active.kids-tab .wing-label .title { color: #8a5800; }
+.wing-tab.active.adults-tab .wing-label .title { color: var(--emerald); }
+
+/* ===================== WINGS ===================== */
+.wing {
+  display: none;
+  animation: fadeUp 0.45s ease both;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  position: relative;
+  z-index: 1;
+}
+.wing.visible { display: block; }
+
+/* ===================== WING BANNER ===================== */
+.wing-banner {
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kids-banner {
+  background: linear-gradient(135deg, #fff8e6 0%, #fdf0c5 100%);
+  border: 2px solid rgba(232,160,32,0.3);
+  box-shadow: 0 8px 32px rgba(232,160,32,0.12);
+}
+
+.adults-banner {
+  background: linear-gradient(135deg, #e8f4ec 0%, #d4ecdc 100%);
+  border: 2px solid rgba(26,92,58,0.2);
+  box-shadow: 0 8px 32px rgba(26,92,58,0.1);
+}
+
+.banner-deco {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  opacity: 0.07;
+}
+.kids-banner .banner-deco { background: var(--kids-accent); }
+.adults-banner .banner-deco { background: var(--adults-accent); }
+
+.banner-emoji { font-size: 64px; flex-shrink: 0; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.banner-text { flex: 1; position: relative; z-index: 1; }
+.banner-text h2 {
+  font-family: 'Amiri', serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.kids-banner .banner-text h2 { color: #8a5800; }
+.adults-banner .banner-text h2 { color: var(--emerald); }
+.banner-text p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+.banner-ornament {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Amiri', serif;
+  font-size: 90px;
+  opacity: 0.06;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+/* ===================== ROOMS GRID ===================== */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* ===================== ROOM CARD ===================== */
+.room-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(26,18,8,0.08);
+  border: 1.5px solid var(--cream2);
+  transition: all .35s cubic-bezier(.34,1.2,.64,1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.room-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Kids room cards */
+.kids-wing .room-card { border-color: rgba(232,160,32,0.15); }
+.kids-wing .room-card:hover { border-color: var(--kids-accent); }
+
+/* Adults room cards */
+.adults-wing .room-card { border-color: rgba(26,92,58,0.12); }
+.adults-wing .room-card:hover { border-color: var(--adults-accent); }
+
+/* Room visual header */
+.room-visual {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* islamic pattern overlay */
+.room-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(60deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 21px),
+    repeating-linear-gradient(-60deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 21px);
+}
+
+.room-visual-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.room-emoji {
+  font-size: 64px;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+  animation: float 3.5s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+.room-visual-label {
+  font-family: 'Amiri', serif;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Room body */
+.room-body { padding: 22px 20px 20px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+.room-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-badge {
+  background: #22c55e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 100px;
+  animation: pulseBadge 2s ease infinite;
+  font-family: 'Tajawal', sans-serif;
+}
+@keyframes pulseBadge {
+  0%,100%{opacity:1} 50%{opacity:0.6}
+}
+
+.room-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+.room-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--cream2);
+  color: var(--muted);
+}
+
+/* Room footer */
+.room-footer {
+  padding: 0 20px 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-enter {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+
+.kids-wing .btn-enter {
+  background: linear-gradient(135deg, var(--kids-accent) 0%, #f5c842 100%);
+  color: #5a3800;
+  box-shadow: 0 4px 14px rgba(232,160,32,0.35);
+}
+.kids-wing .btn-enter:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232,160,32,0.5);
+}
+
+.adults-wing .btn-enter {
+  background: linear-gradient(135deg, var(--emerald-2) 0%, var(--emerald-3) 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(26,92,58,0.35);
+}
+.adults-wing .btn-enter:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26,92,58,0.5);
+}
+
+.btn-schedule {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--cream2);
+  color: var(--muted);
+  border: 1.5px solid var(--cream2);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-schedule:hover { background: #efe8d0; border-color: var(--gold); color: var(--gold-dark); }
+
+/* Room decorative corner */
+.room-corner {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+}
+
+/* ===================== MODAL ===================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 18, 8, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: #fff;
+  border-radius: 24px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+  transform: scale(0.92) translateY(20px);
+  transition: transform .3s cubic-bezier(.34,1.4,.64,1);
+  position: relative;
+}
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+
+.modal-header {
+  padding: 28px 28px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid var(--cream2);
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  z-index: 1;
+}
+
+.modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.modal-info { flex: 1; }
+.modal-info h2 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.modal-info p { font-size: 13.5px; color: var(--muted); }
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--cream2);
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.modal-close:hover { background: #eee; color: var(--ink); }
+
+.modal-body { padding: 24px 28px; }
+
+.modal-lessons { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+
+.lesson-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--cream2);
+  border: 1.5px solid transparent;
+  transition: all .2s;
+  cursor: pointer;
+}
+.lesson-row:hover { background: #fdf0c5; border-color: var(--gold); }
+
+.lesson-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lesson-info { flex: 1; }
+.lesson-info .ltitle { font-size: 14px; font-weight: 700; color: var(--ink); }
+.lesson-info .lmeta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.lesson-play {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--emerald);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+.lesson-row:hover .lesson-play { transform: scale(1.15); }
+
+.modal-enroll-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--gold) 0%, #f7c948 100%);
+  color: var(--emerald);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  animation: pulseBtn 2s ease infinite;
+}
+.modal-enroll-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.55); animation: none; }
+@keyframes pulseBtn { 0%,100%{box-shadow:0 4px 20px rgba(201,168,76,0.4)} 50%{box-shadow:0 6px 28px rgba(201,168,76,0.65)} }
+
+/* ===================== SCHEDULE SECTION ===================== */
+.schedule-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.schedule-day {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  border: 1px solid var(--cream2);
+}
+
+.day-header {
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-2) 100%);
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.schedule-slot {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--cream2);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: background .15s;
+}
+.schedule-slot:last-child { border-bottom: none; }
+.schedule-slot:hover { background: var(--cream2); }
+
+.slot-time {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  white-space: nowrap;
+  min-width: 80px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.slot-info { flex: 1; }
+.slot-room { font-size: 13px; font-weight: 700; color: var(--ink); }
+.slot-wing { font-size: 11px; color: var(--muted); }
+
+.slot-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.slot-dot.kids { background: var(--kids-accent); }
+.slot-dot.adults { background: var(--adults-accent); }
+
+/* ===================== FEATURES ===================== */
+.features-section {
+  background: linear-gradient(160deg, var(--emerald) 0%, #0f3d26 100%);
+  padding: 70px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.features-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+}
+
+.features-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  text-align: center;
+  transition: all .3s;
+  backdrop-filter: blur(4px);
+}
+.feature-card:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+.feature-icon { font-size: 42px; margin-bottom: 14px; display: block; }
+.feature-title { font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 800; color: var(--gold-light); margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: #0a1a0e;
+  color: rgba(255,255,255,0.6);
+  padding: 50px 0 24px;
+}
+
+.footer-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand .logo-words .main { font-size: 26px; color: var(--gold-light); display: block; margin-bottom: 6px; margin-top: 14px; }
+.footer-brand p { font-size: 13.5px; line-height: 1.8; color: rgba(255,255,255,0.5); max-width: 280px; margin-top: 10px; }
+
+.footer-col h4 { font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { padding: 5px 0; }
+.footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13.5px; transition: color .2s; display: flex; align-items: center; gap: 7px; }
+.footer-col ul li a::before { content:'◂'; font-size:10px; color:var(--gold); }
+.footer-col ul li a:hover { color: var(--gold-light); }
+
+.footer-bottom {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 24px 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+}
+.footer-bottom strong { color: rgba(255,255,255,0.55); }
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .wing-tab { min-width: 160px; padding: 16px 20px; }
+  .wing-banner { flex-direction: column; text-align: center; }
+  .banner-emoji { font-size: 48px; }
+}
+@media (max-width: 620px) {
+  .hero-stats { gap: 16px; }
+  .stat-box { min-width: 100px; padding: 12px 16px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .header-nav { display: none; }
+  .rooms-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-emblem">📖</div>
+      <div class="logo-words">
+        <span class="main">منصة عزيز</span>
+        <span class="sub">للتعليم الإسلامي عن بعد</span>
+      </div>
+    </a>
+
+    <nav class="header-nav">
+      <a class="nav-btn active" href="#wings">أقسامنا</a>
+      <a class="nav-btn" href="#schedule">الجدول</a>
+      <a class="nav-btn" href="#features">مميزاتنا</a>
+      <button class="nav-btn" onclick="scrollToEnroll()">التسجيل</button>
+    </nav>
+
+    <div class="header-actions">
+      <a href="aziz-education.html" class="btn-login">دخول</a>
+      <a href="aziz-education.html" class="btn-enroll">🎓 سجّل الآن</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-ornament left">بسم</div>
+  <div class="hero-ornament right">الله</div>
+  <div class="hero-content">
+    <div class="hero-badge">🌙 بسم الله الرحمن الرحيم</div>
+    <h1 class="hero-title">
+      تعلّم علوم الإسلام<br/><span>من بيتك مع أمهر الأساتذة</span>
+    </h1>
+    <p class="hero-sub">
+      منصة عزيز للتعليم عن بعد — تضم قسمين متخصصين: قسم الأطفال وقسم الكبار،<br/>
+      مع غرف تعليمية حية في القرآن الكريم والتجويد والحديث والفقه والمحاضرات.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="num">+500</div><div class="lbl">طالب نشط</div></div>
+      <div class="stat-box"><div class="num">7</div><div class="lbl">غرف دراسية</div></div>
+      <div class="stat-box"><div class="num">2</div><div class="lbl">قسم متخصص</div></div>
+      <div class="stat-box"><div class="num">24/7</div><div class="lbl">وصول مستمر</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION HEADER ==================== -->
+<div id="wings">
+  <div class="section-header">
+    <div class="section-eyebrow">أقسام المدرسة</div>
+    <h2 class="section-title">اختر <span>قسمك</span></h2>
+    <p class="section-desc">نقدم تعليماً متميزاً لكل الأعمار — من الصغار إلى الكبار — في أجواء إسلامية أصيلة</p>
+  </div>
+
+  <!-- WING TABS -->
+  <div class="wing-tabs">
+    <div class="wing-tab kids-tab active" onclick="showWing('kids')">
+      <div class="wing-icon">🧒</div>
+      <div class="wing-label">
+        <span class="title">قسم الأطفال</span>
+        <span class="count">🚪 3 غرف دراسية</span>
+      </div>
+    </div>
+    <div class="wing-tab adults-tab" onclick="showWing('adults')">
+      <div class="wing-icon">👨‍🎓</div>
+      <div class="wing-label">
+        <span class="title">قسم الكبار</span>
+        <span class="count">🚪 4 غرف دراسية</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== KIDS WING ==================== -->
+<div class="wing kids-wing visible" id="wing-kids">
+  <div class="wing-banner kids-banner">
+    <div class="banner-deco"></div>
+    <div class="banner-ornament">الأطفال</div>
+    <div class="banner-emoji">🧒✨</div>
+    <div class="banner-text">
+      <h2>🌟 قسم الأطفال — رياض العلم</h2>
+      <p>بيئة تعليمية مُصمَّمة خصيصاً لأطفالنا الصغار، تجمع بين الحفظ والفهم والتطبيق في أجواء ممتعة ومحببة، مع أساتذة متخصصين في تعليم الأطفال.</p>
+    </div>
+  </div>
+
+  <div class="rooms-grid">
+
+    <!-- Room 1: Quran Kids -->
+    <div class="room-card" onclick="openModal('quran-kids')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#1a7048 0%,#0d4a2e 100%);">
+        <div class="room-corner">📿</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">📗</span>
+          <div class="room-visual-label">القرآن الكريم</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">
+          غرفة القرآن الكريم
+          <span class="live-badge">🔴 مباشر</span>
+        </div>
+        <p class="room-desc">حفظ وتلاوة القرآن الكريم للأطفال من سن 5 إلى 14 سنة، مع حلقات يومية تفاعلية ومتابعة فردية لكل طفل.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 يومياً</span>
+          <span class="meta-pill">⏱ 45 دقيقة</span>
+          <span class="meta-pill">👶 5–14 سنة</span>
+          <span class="meta-pill">👨‍🏫 3 أساتذة</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('quran-kids')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+    <!-- Room 2: Tajweed Kids -->
+    <div class="room-card" onclick="openModal('tajweed-kids')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#c47c00 0%,#8a5500 100%);">
+        <div class="room-corner">🎵</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">🎙️</span>
+          <div class="room-visual-label">التجويد</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">غرفة التجويد</div>
+        <p class="room-desc">تعليم أحكام التجويد بطريقة مبسطة وممتعة للأطفال، مع تطبيق عملي على سور قصيرة وألعاب تعليمية تفاعلية.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 3 مرات/أسبوع</span>
+          <span class="meta-pill">⏱ 40 دقيقة</span>
+          <span class="meta-pill">👶 6–14 سنة</span>
+          <span class="meta-pill">👨‍🏫 2 أساتذة</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('tajweed-kids')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+    <!-- Room 3: Hadith Kids -->
+    <div class="room-card" onclick="openModal('hadith-kids')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#2a4a8a 0%,#162a5e 100%);">
+        <div class="room-corner">📜</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">📜</span>
+          <div class="room-visual-label">الحديث النبوي</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">غرفة الحديث النبوي</div>
+        <p class="room-desc">دراسة الأحاديث النبوية الشريفة المختارة للأطفال، مع شرح المعاني وتطبيق القيم النبيلة في حياتهم اليومية.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 مرتين/أسبوع</span>
+          <span class="meta-pill">⏱ 35 دقيقة</span>
+          <span class="meta-pill">👶 7–14 سنة</span>
+          <span class="meta-pill">👨‍🏫 2 أساتذة</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('hadith-kids')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== ADULTS WING ==================== -->
+<div class="wing adults-wing" id="wing-adults">
+  <div class="wing-banner adults-banner">
+    <div class="banner-deco"></div>
+    <div class="banner-ornament">العلم</div>
+    <div class="banner-emoji">👨‍🎓📚</div>
+    <div class="banner-text">
+      <h2>📚 قسم الكبار — أكاديمية العلوم الشرعية</h2>
+      <p>محتوى علمي رصين مُعَدّ لطلاب العلم من الكبار، يشمل المحاضرات العلمية والتلاوة والتجويد والفقه الميسر، مع نخبة من العلماء والمتخصصين.</p>
+    </div>
+  </div>
+
+  <div class="rooms-grid">
+
+    <!-- Room 1: Lectures -->
+    <div class="room-card" onclick="openModal('lectures')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#1a3a6b 0%,#0d2244 100%);">
+        <div class="room-corner">🎤</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">🎤</span>
+          <div class="room-visual-label">المحاضرات</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">
+          غرفة المحاضرات
+          <span class="live-badge">🔴 مباشر</span>
+        </div>
+        <p class="room-desc">محاضرات علمية متنوعة في العقيدة والسيرة والتفسير والتربية، يُلقيها نخبة من العلماء والمشايخ المتخصصين أسبوعياً.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 أسبوعياً</span>
+          <span class="meta-pill">⏱ 90 دقيقة</span>
+          <span class="meta-pill">👥 مفتوح للجميع</span>
+          <span class="meta-pill">🎓 5 علماء</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('lectures')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+    <!-- Room 2: Quran Adults -->
+    <div class="room-card" onclick="openModal('quran-adults')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#1a5c3a 0%,#0a3322 100%);">
+        <div class="room-corner">📿</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">📕</span>
+          <div class="room-visual-label">القرآن الكريم</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">
+          غرفة القرآن الكريم
+          <span class="live-badge">🔴 مباشر</span>
+        </div>
+        <p class="room-desc">حلقات تحفيظ وتلاوة للكبار مع مراجعة منتظمة ومتابعة شخصية، وفق منهج علمي محكم يضمن الإتقان والثبات.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 يومياً</span>
+          <span class="meta-pill">⏱ 60 دقيقة</span>
+          <span class="meta-pill">👥 +18 سنة</span>
+          <span class="meta-pill">👨‍🏫 4 أساتذة</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('quran-adults')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+    <!-- Room 3: Tajweed Adults -->
+    <div class="room-card" onclick="openModal('tajweed-adults')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#7a4500 0%,#4a2800 100%);">
+        <div class="room-corner">🎼</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">🎙️</span>
+          <div class="room-visual-label">التجويد المتقدم</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">غرفة التجويد</div>
+        <p class="room-desc">دراسة علم التجويد دراسة علمية معمّقة: من النظرية إلى التطبيق، مع قراءة رواية حفص عن عاصم وطرق الأداء الصحيح.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 3 مرات/أسبوع</span>
+          <span class="meta-pill">⏱ 60 دقيقة</span>
+          <span class="meta-pill">👥 +16 سنة</span>
+          <span class="meta-pill">👨‍🏫 3 أساتذة</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('tajweed-adults')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+    <!-- Room 4: Fiqh -->
+    <div class="room-card" onclick="openModal('fiqh')">
+      <div class="room-visual" style="background:linear-gradient(135deg,#5a1a6b 0%,#340d3d 100%);">
+        <div class="room-corner">⚖️</div>
+        <div class="room-visual-inner">
+          <span class="room-emoji">⚖️</span>
+          <div class="room-visual-label">الفقه الميسر</div>
+        </div>
+      </div>
+      <div class="room-body">
+        <div class="room-title">غرفة الفقه الميسر</div>
+        <p class="room-desc">تعلّم أحكام الفقه الإسلامي في العبادات والمعاملات بأسلوب ميسر وواضح، مع الإجابة على الأسئلة والفتاوى المعاصرة.</p>
+        <div class="room-meta">
+          <span class="meta-pill">📅 مرتين/أسبوع</span>
+          <span class="meta-pill">⏱ 75 دقيقة</span>
+          <span class="meta-pill">👥 +16 سنة</span>
+          <span class="meta-pill">🎓 2 علماء</span>
+        </div>
+      </div>
+      <div class="room-footer">
+        <button class="btn-enter" onclick="event.stopPropagation();openModal('fiqh')">دخول الغرفة</button>
+        <button class="btn-schedule" onclick="event.stopPropagation();scrollToSchedule()" title="الجدول">📅</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SCHEDULE ==================== -->
+<div id="schedule">
+  <div class="section-header">
+    <div class="section-eyebrow">الجدول الأسبوعي</div>
+    <h2 class="section-title">مواعيد <span>الدروس</span></h2>
+    <p class="section-desc">جدول منظم يضمن لك الحضور والمتابعة المنتظمة لجميع الغرف</p>
+  </div>
+
+  <div class="schedule-section">
+    <div class="schedule-grid">
+
+      <div class="schedule-day">
+        <div class="day-header">📅 الأحد</div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">09:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">11:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">الفقه الميسر</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">20:00</span>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="day-header">📅 الاثنين</div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">09:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">التجويد</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">10:30</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">التجويد</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">19:30</span>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="day-header">📅 الثلاثاء</div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">الحديث النبوي</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">09:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">11:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">المحاضرات</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">20:30</span>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="day-header">📅 الأربعاء</div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">09:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">التجويد</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">10:30</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">التجويد</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">19:30</span>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="day-header">📅 الخميس</div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">09:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot kids"></span>
+          <div class="slot-info"><div class="slot-room">الحديث النبوي</div><div class="slot-wing">قسم الأطفال</div></div>
+          <span class="slot-time">10:30</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">الفقه الميسر</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">20:00</span>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="day-header" style="background:linear-gradient(135deg,#c9a84c,#9a7a2a);">📅 الجمعة</div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">القرآن الكريم</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">09:00</span>
+        </div>
+        <div class="schedule-slot">
+          <span class="slot-dot adults"></span>
+          <div class="slot-info"><div class="slot-room">محاضرة الجمعة</div><div class="slot-wing">قسم الكبار</div></div>
+          <span class="slot-time">14:30</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FEATURES ==================== -->
+<section class="features-section" id="features">
+  <div class="section-header" style="background:transparent;">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.5);">لماذا نحن</div>
+    <h2 class="section-title" style="color:#fff;">مميزات <span style="color:var(--gold-light)">منصة عزيز</span></h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.6);">نقدم تجربة تعليمية إسلامية لا مثيل لها، بأحدث التقنيات وأرقى الأساليب</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🎬</span>
+      <div class="feature-title">دروس مسجلة</div>
+      <div class="feature-desc">جميع الدروس مسجلة ومتاحة لإعادة المشاهدة في أي وقت ومن أي جهاز</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📡</span>
+      <div class="feature-title">بث مباشر</div>
+      <div class="feature-desc">حلقات تفاعلية مباشرة مع إمكانية التواصل مع الأستاذ وطرح الأسئلة لحظياً</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📜</span>
+      <div class="feature-title">شهادات معتمدة</div>
+      <div class="feature-desc">شهادة إتمام لكل دورة وشهادة إسناد للقرآن الكريم مع إجازة</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">👨‍👩‍👧</span>
+      <div class="feature-title">متابعة الأهل</div>
+      <div class="feature-desc">لوحة تحكم خاصة بالآباء لمتابعة تقدم أطفالهم وحضورهم</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📱</span>
+      <div class="feature-title">تطبيق جوال</div>
+      <div class="feature-desc">تعلّم من هاتفك في أي مكان وفي أي وقت — مجاناً مع كل اشتراك</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💬</span>
+      <div class="feature-title">دعم واتساب</div>
+      <div class="feature-desc">تواصل مباشر مع الأستاذ عبر واتساب للأسئلة والمتابعة الشخصية</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="logo-emblem" style="width:48px;height:48px;font-size:22px;">📖</div>
+        <div class="logo-words">
+          <span class="main">منصة عزيز</span>
+          <span class="sub" style="font-size:11px;color:rgba(255,255,255,0.4)">للتعليم الإسلامي عن بعد</span>
+        </div>
+      </div>
+      <p>منصة إسلامية تعليمية شاملة تهدف إلى نشر العلم الشرعي الأصيل لكل الأعمار في الوطن العربي وما وراءه.</p>
+    </div>
+    <div class="footer-col">
+      <h4>قسم الأطفال</h4>
+      <ul>
+        <li><a href="#" onclick="showWing('kids')">غرفة القرآن الكريم</a></li>
+        <li><a href="#" onclick="showWing('kids')">غرفة التجويد</a></li>
+        <li><a href="#" onclick="showWing('kids')">غرفة الحديث النبوي</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>قسم الكبار</h4>
+      <ul>
+        <li><a href="#" onclick="showWing('adults')">غرفة المحاضرات</a></li>
+        <li><a href="#" onclick="showWing('adults')">غرفة القرآن الكريم</a></li>
+        <li><a href="#" onclick="showWing('adults')">غرفة التجويد</a></li>
+        <li><a href="#" onclick="showWing('adults')">غرفة الفقه الميسر</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>تواصل معنا</h4>
+      <ul>
+        <li><a href="#">📞 +212 06 XX XX XX XX</a></li>
+        <li><a href="#">📧 contact@aziz-education.ma</a></li>
+        <li><a href="#">💬 واتساب</a></li>
+        <li><a href="aziz-education.html">🎓 سجّل الآن</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    جميع الحقوق محفوظة © 2024 <strong>منصة عزيز للتعليم الإسلامي عن بعد</strong>
+  </div>
+</footer>
+
+<!-- ==================== MODAL ==================== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ==================== WING SWITCH ==================== */
+function showWing(name) {
+  document.querySelectorAll('.wing').forEach(w => w.classList.remove('visible'));
+  document.querySelectorAll('.wing-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('wing-' + name).classList.add('visible');
+  document.querySelector('.' + name + '-tab').classList.add('active');
+  document.getElementById('wings').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ==================== MODAL DATA ==================== */
+const rooms = {
+  'quran-kids': {
+    icon: '📗', color: '#1a5c3a',
+    title: 'غرفة القرآن الكريم — قسم الأطفال',
+    sub: '🧒 للأطفال من 5 إلى 14 سنة | يومياً الساعة 09:00',
+    lessons: [
+      { t: 'تحفيظ سورة الفاتحة والمعوذتين', d: '45 دقيقة • أ. عبد الكريم' },
+      { t: 'تحفيظ سورة الإخلاص والكوثر', d: '45 دقيقة • أ. عبد الكريم' },
+      { t: 'مراجعة جزء عم كاملاً', d: '45 دقيقة • أ. سعيد' },
+      { t: 'حفظ سور من جزء تبارك', d: '45 دقيقة • أ. سعيد' },
+      { t: 'اختبار التسميع الأسبوعي', d: '30 دقيقة • جماعي' },
+    ]
+  },
+  'tajweed-kids': {
+    icon: '🎙️', color: '#c47c00',
+    title: 'غرفة التجويد — قسم الأطفال',
+    sub: '🧒 للأطفال من 6 إلى 14 سنة | 3 مرات أسبوعياً',
+    lessons: [
+      { t: 'مقدمة: ما هو التجويد ولماذا نتعلمه؟', d: '40 دقيقة • أ. فاطمة' },
+      { t: 'أحكام النون الساكنة والتنوين', d: '40 دقيقة • أ. فاطمة' },
+      { t: 'المد وأنواعه بالأمثلة', d: '40 دقيقة • أ. حنان' },
+      { t: 'الوقف والابتداء في قصار السور', d: '40 دقيقة • أ. حنان' },
+    ]
+  },
+  'hadith-kids': {
+    icon: '📜', color: '#2a4a8a',
+    title: 'غرفة الحديث النبوي — قسم الأطفال',
+    sub: '🧒 للأطفال من 7 إلى 14 سنة | مرتان أسبوعياً',
+    lessons: [
+      { t: 'الأربعون النووية: الحديث الأول', d: '35 دقيقة • أ. يوسف' },
+      { t: 'الأعمال بالنيات — شرح وتطبيق', d: '35 دقيقة • أ. يوسف' },
+      { t: 'أحاديث عن حسن الخلق', d: '35 دقيقة • أ. إبراهيم' },
+      { t: 'حديث الرحمة والتعاون', d: '35 دقيقة • أ. إبراهيم' },
+    ]
+  },
+  'lectures': {
+    icon: '🎤', color: '#1a3a6b',
+    title: 'غرفة المحاضرات — قسم الكبار',
+    sub: '👥 مفتوح للجميع | أسبوعياً الثلاثاء والجمعة',
+    lessons: [
+      { t: 'محاضرة: مفهوم التوحيد في الإسلام', d: '90 دقيقة • د. عمر الحسني' },
+      { t: 'محاضرة: السيرة النبوية — مكة المكرمة', d: '90 دقيقة • د. أحمد الفاسي' },
+      { t: 'محاضرة: الإسلام والحياة المعاصرة', d: '90 دقيقة • د. عمر الحسني' },
+      { t: 'محاضرة: فقه الأولويات', d: '90 دقيقة • د. محمد الجزولي' },
+      { t: 'محاضرة الجمعة: زاد المتقين', d: '60 دقيقة • الشيخ عبد الرحمن' },
+    ]
+  },
+  'quran-adults': {
+    icon: '📕', color: '#1a5c3a',
+    title: 'غرفة القرآن الكريم — قسم الكبار',
+    sub: '👥 للكبار +18 سنة | يومياً الساعة 11:00',
+    lessons: [
+      { t: 'مقرر الحفظ: الجزء الأول', d: '60 دقيقة • الشيخ عبد الرزاق' },
+      { t: 'مراجعة وتثبيت الجزء الثاني', d: '60 دقيقة • الشيخ عبد الرزاق' },
+      { t: 'حفظ الجزء الثالث مع إتقان الأداء', d: '60 دقيقة • أ. رضا الإدريسي' },
+      { t: 'اختبار أسبوعي والإجازة الشهرية', d: '45 دقيقة • جميع الأساتذة' },
+    ]
+  },
+  'tajweed-adults': {
+    icon: '🎙️', color: '#7a4500',
+    title: 'غرفة التجويد — قسم الكبار',
+    sub: '👥 للكبار +16 سنة | 3 مرات أسبوعياً مساءً',
+    lessons: [
+      { t: 'أحكام التجويد كاملة: النظرية', d: '60 دقيقة • أ. إلياس الوزاني' },
+      { t: 'الصفات والمخارج — تطبيق عملي', d: '60 دقيقة • أ. إلياس الوزاني' },
+      { t: 'رواية حفص: نقطة الاختلاف', d: '60 دقيقة • أ. سمير القادري' },
+      { t: 'التطبيق على سور طويلة من القرآن', d: '60 دقيقة • أ. سمير القادري' },
+    ]
+  },
+  'fiqh': {
+    icon: '⚖️', color: '#5a1a6b',
+    title: 'غرفة الفقه الميسر — قسم الكبار',
+    sub: '👥 للكبار +16 سنة | مرتان أسبوعياً مساءً',
+    lessons: [
+      { t: 'فقه الطهارة: الوضوء والغسل', d: '75 دقيقة • الشيخ حمزة المراكشي' },
+      { t: 'فقه الصلاة: الشروط والأركان', d: '75 دقيقة • الشيخ حمزة المراكشي' },
+      { t: 'فقه الزكاة والصيام', d: '75 دقيقة • د. عمر الحسني' },
+      { t: 'فقه المعاملات المعاصرة', d: '75 دقيقة • د. عمر الحسني' },
+      { t: 'جلسة أسئلة وفتاوى مباشرة', d: '60 دقيقة • العلماء' },
+    ]
+  }
+};
+
+/* ==================== MODAL OPEN ==================== */
+function openModal(key) {
+  const r = rooms[key];
+  if (!r) return;
+
+  document.getElementById('modalHeader').innerHTML = `
+    <div class="modal-icon" style="background:${r.color}20;border:1.5px solid ${r.color}40;">
+      <span style="font-size:26px">${r.icon}</span>
+    </div>
+    <div class="modal-info">
+      <h2>${r.title}</h2>
+      <p>${r.sub}</p>
+    </div>`;
+
+  const lessonsHtml = r.lessons.map((l, i) => `
+    <div class="lesson-row">
+      <div class="lesson-num">${i + 1}</div>
+      <div class="lesson-info">
+        <div class="ltitle">${l.t}</div>
+        <div class="lmeta">${l.d}</div>
+      </div>
+      <div class="lesson-play" style="background:${r.color}">▶</div>
+    </div>`).join('');
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-lessons">${lessonsHtml}</div>
+    <button class="modal-enroll-btn" onclick="window.location.href='aziz-education.html'">
+      🎓 سجّل الآن للوصول الكامل
+    </button>`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay') && !e.currentTarget.classList?.contains('modal-close')) return;
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalBox').addEventListener('click', e => e.stopPropagation());
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal({}); });
+
+function scrollToSchedule() {
+  document.getElementById('schedule').scrollIntoView({ behavior: 'smooth' });
+}
+
+function scrollToEnroll() {
+  window.location.href = 'aziz-education.html';
+}
+
+/* ==================== SCROLL ANIMATION ==================== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.room-card, .schedule-day, .feature-card, .stat-box').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
