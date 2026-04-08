@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق مراسلة احترافي</title>
+    <style>
+        /* CSS - التصميم والتنسيق */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #d1d7db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            width: 95%;
+            max-width: 1100px;
+            height: 90vh;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 30%;
+            background-color: #ffffff;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #008069;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .chat-item:hover { background: #f5f5f5; }
+        .chat-item.active { background: #ebebeb; font-weight: bold; }
+
+        /* منطقة المحادثة */
+        .chat-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #e5ddd5; /* لون خلفية واتساب الشهير */
+        }
+
+        .chat-header {
+            padding: 15px 25px;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .messages-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* فقاعات الرسائل */
+        .message {
+            max-width: 65%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .sent {
+            align-self: flex-end;
+            background: #dcf8c6;
+            border-top-left-radius: 8px;
+        }
+
+        .received {
+            align-self: flex-start;
+            background: #ffffff;
+            border-top-right-radius: 8px;
+        }
+
+        .timestamp {
+            font-size: 10px;
+            color: #888;
+            margin-top: 4px;
+            display: block;
+            text-align: left;
+        }
+
+        /* مدخلات الرسالة */
+        .input-area {
+            padding: 10px 20px;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .input-area button {
+            background: #00a884;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .input-area button:hover { background: #008069; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">محادثاتي</div>
+            <div class="chat-list">
+                <div class="chat-item active">
+                    <div>أحمد</div>
+                    <small style="color: #00a884;">متصل الآن</small>
+                </div>
+                <div class="chat-item">
+                    <div>سارة</div>
+                    <small>آخر ظهور 10:30 ص</small>
+                </div>
+                <div class="chat-item">
+                    <div>فريق التطوير</div>
+                    <small>ياسين: هل انتهيتم؟</small>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-window">
+            <header class="chat-header">
+                <div id="active-user">أحمد</div>
+            </header>
+            
+            <div class="messages-container" id="messagesBox">
+                <div class="message received">
+                    مرحباً! كيف حالك اليوم؟
+                    <span class="timestamp">09:00 ص</span>
+                </div>
+            </div>
+
+            <footer class="input-area">
+                <input type="text" id="msgInput" placeholder="اكتب رسالة هنا..." autocomplete="off">
+                <button id="sendBtn">إرسال</button>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        /* JavaScript - المنطق البرمجي */
+        const msgInput = document.getElementById('msgInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const messagesBox = document.getElementById('messagesBox');
+
+        // وظيفة إرسال الرسالة
+        function sendMessage() {
+            const text = msgInput.value.trim();
+            
+            if (text !== "") {
+                // 1. عرض رسالة المرسل (User A)
+                renderMessage(text, 'sent');
+                
+                // 2. محاكاة تخزين البيانات (Model)
+                console.log("تم إرسال الرسالة إلى السيرفر: " + text);
+
+                // 3. تفريغ الحقل
+                msgInput.value = "";
+                
+                // 4. محاكاة رد تلقائي (Server/User B) بعد ثانية واحدة
+                setTimeout(() => {
+                    renderMessage("وصلت رسالتك، سأرد عليك قريباً! (رد آلي)", 'received');
+                }, 1000);
+            }
+        }
+
+        // دالة لبناء عنصر الرسالة في HTML
+        function renderMessage(text, type) {
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', type);
+            
+            messageDiv.innerHTML = `
+                ${text}
+                <span class="timestamp">${time}</span>
+            `;
+            
+            messagesBox.appendChild(messageDiv);
+            
+            // التمرير لأسفل تلقائياً عند وصول رسالة جديدة
+            messagesBox.scrollTop = messagesBox.scrollHeight;
+        }
+
+        // الاستماع لحدث الضغط على الزر
+        sendBtn.addEventListener('click', sendMessage);
+
+        // الاستماع لحدث ضغط Enter في لوحة المفاتيح
+        msgInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+
+</body>
+</html>
